@@ -1,10 +1,7 @@
 <template>
     <Page>
        <ActionBar title="Find a Drink" android:flat="true"/>
-        <TabView android:tabBackgroundColor="#53ba82"
-                 android:tabTextColor="#c4ffdf"
-                 android:selectedTabTextColor="#ffffff"
-                 androidSelectedTabHighlightColor="#ffffff">
+        <TabView>
             <TabViewItem title="Alcoholic">
                <AlcoholicDrinks/>
             </TabViewItem>
@@ -38,10 +35,14 @@
 
 <style scoped>
     ActionBar {
-        background-color: #53ba82;
-        color: #ffffff;
+        background-color: #faebd7;
+        color: #333333;
     }
-
+    TabView{
+       background-color: #faebd7;
+       font-size: 14;
+       font-family: "Chalkboard SE";
+    }
     .message {
         vertical-align: center;
         text-align: center;

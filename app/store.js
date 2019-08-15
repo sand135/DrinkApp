@@ -21,6 +21,7 @@ export default new Vuex.Store({
 
       setListWithNonAlcoholicDrinks(state, drinks){
         state.allNonAlcoholicDrinks = drinks
+          this.commit('searchForNonAlcoholicDrinks', "")
 
       },
 
@@ -36,7 +37,20 @@ export default new Vuex.Store({
               }
 
           }
-      }
+      },
+      searchForNonAlcoholicDrinks(state, searchPhrase){
+          if(searchPhrase === "" || searchPhrase === undefined){
+              state.searchResultNonAlcoholicDrinks = state.allNonAlcoholicDrinks
+          }else{
+              state.searchResultNonAlcoholicDrinks = []
+              for (let i = 0; i < state.allNonAlcoholicDrinks.length; i++) {
+                  if(state.allNonAlcoholicDrinks[i].strDrink.toUpperCase().includes(searchPhrase.toUpperCase())){
+                      state.searchResultNonAlcoholicDrinks.unshift(state.allNonAlcoholicDrinks[i])
+                  }
+              }
+
+          }
+      },
 
 
 
