@@ -16,6 +16,7 @@ new Vue({
     //fetches all drinks when app is starting up
     this.$store.dispatch('fetchAllAlcoholicDrinks')
     this.$store.dispatch('fetchAllNonAlcoholicDrinks')
+
   },
 
   store,

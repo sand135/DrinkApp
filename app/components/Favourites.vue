@@ -1,6 +1,6 @@
 <template>
     <GridLayout columns="*" rows="*,60">
-        <ListView col="0" row="0" v-for="drink in $store.state.favourites" @itemTap="onItemTap">
+        <ListView col="0" row="0" for="drink in $store.state.favourites" @itemTap="onItemTap">
             <v-template>
                 <Label :text="drink.strDrink" textWrap="true"/>
             </v-template>

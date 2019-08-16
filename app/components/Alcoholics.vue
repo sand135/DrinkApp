@@ -19,16 +19,32 @@
 </template>
 
 <script>
+    import Detailview from './Detail.vue'
     export default{
+        components:{
+            Detailview
+        },
         data(){
             return{
                 searchPhrase: "",
-                searchresult: []
+                searchresult: [],
+                //detailview: detailview
             }
         },
         methods:{
             onItemTap(){
-                console.log("item tapped")
+                //TODO: Fixa till så att rätt information laddas in när man trycker på listan. Missin prop items --kolla upp!
+                this.$navigateTo(Detailview, {
+                    transition: {},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+
+                    props: {
+                        id: '11007',
+                    }
+                });
+                //this.$showModal(Detailview, { props: { id: "11007" }});
+
             },
             onSearchTextChanged(){
                 console.log("searchtext changed", this.searchPhrase )
