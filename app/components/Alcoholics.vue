@@ -28,23 +28,19 @@
             return{
                 searchPhrase: "",
                 searchresult: [],
-                //detailview: detailview
             }
         },
         methods:{
-            onItemTap(){
-                //TODO: Fixa till så att rätt information laddas in när man trycker på listan. Missin prop items --kolla upp!
-                this.$navigateTo(Detailview, {
+            onItemTap(args){
+                this.$showModal(Detailview, {
                     transition: {},
                     transitioniOS: {},
                     transitionAndroid: {},
-
+                    fullscreen: true,
                     props: {
-                        id: '11007',
+                        id: args.item.idDrink,
                     }
                 });
-                //this.$showModal(Detailview, { props: { id: "11007" }});
-
             },
             onSearchTextChanged(){
                 console.log("searchtext changed", this.searchPhrase )

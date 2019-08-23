@@ -1,6 +1,6 @@
 <template>
     <Page>
-       <ActionBar title="Find a Drink" android:flat="true"/>
+       <ActionBar title="Drinks" android:flat="true"/>
         <TabView>
             <TabViewItem title="Alcoholic">
                <AlcoholicDrinks/>

@@ -19,15 +19,28 @@
 </template>
 
 <script>
+    import Detailview from './Detail.vue'
     export default{
+
+        components:{
+            Detailview
+        },
         data(){
             return {
                 searchPhrase: ""
             }
         },
         methods:{
-            onItemTap(){
-                console.log("item tapped")
+            onItemTap(args){
+                this.$showModal(Detailview, {
+                    transition: {},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+
+                    props: {
+                        id: args.item.idDrink,
+                    }
+                });
             },
             onSearchTextChanged() {
                 this.$store.commit('searchForNonAlcoholicDrinks', this.searchPhrase)

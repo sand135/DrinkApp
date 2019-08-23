@@ -1,8 +1,17 @@
 <template>
-    <GridLayout columns="*" rows="*,60">
-        <ListView col="0" row="0" for="drink in $store.state.favourites" @itemTap="onItemTap">
-            <v-template>
-                <Label :text="drink.strDrink" textWrap="true"/>
+    <GridLayout>
+        <ListView marginRight="-2" for="drink in $store.state.favourites" @itemTap="onItemTap">
+            <v-template >
+                <GridLayout columns="*,3*" rows="*">
+                    <Image col="0" row ="0" height="130" :src="drink.strDrinkThumb" stretch= aspectFit />
+                    <Label col="1" row="0" :text="drink.strDrink" textWrap="true"/>
+                </GridLayout>
+            </v-template>
+            <v-template if="$odd">
+                <GridLayout columns="*,3*" rows="*" backgroundColor="#fff8dc">
+                    <Image col="0" row ="0" height="130" :src="drink.strDrinkThumb" stretch= aspectFit />
+                    <Label col="1" row="0" :text="drink.strDrink" textWrap="true"/>
+                </GridLayout>
             </v-template>
         </ListView>
 
@@ -10,15 +19,27 @@
 </template>
 
 <script>
+    import Detailview from './Detail.vue'
     export default{
+        components:{
+          Detailview
+        },
         data(){
             return{
-               searchPhrase: ""
+
             }
         },
         methods:{
-            onItemTap(){
-                console.log("item tapped")
+            onItemTap(index){
+                this.$showModal(Detailview, {
+                    transition: {},
+                    transitioniOS: {},
+                    transitionAndroid: {},
+
+                    props: {
+                        id: index.item.idDrink,
+                    }
+                });
             },
 
         }
