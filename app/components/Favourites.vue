@@ -35,7 +35,7 @@
                     transition: {},
                     transitioniOS: {},
                     transitionAndroid: {},
-
+                    fullscreen: true,
                     props: {
                         id: index.item.idDrink,
                     }
@@ -47,5 +47,12 @@
 </script>
 
 <style>
-
+    list-view{
+        font-family: "Chalkboard SE";
+        font-size: 20;
+        text-align: left;
+    }
+    image{
+        margin-right: 20;
+    }
 </style>

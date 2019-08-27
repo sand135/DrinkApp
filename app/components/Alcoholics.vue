@@ -1,6 +1,7 @@
 <template>
-    <GridLayout columns="*" rows="*,60">
-        <ListView col="0" row="0" marginRight="-2" for="drink in $store.state.searchResultAlcoholicDrinks" @itemTap="onItemTap">
+    <GridLayout columns="*" rows="60,*">
+        <SearchBar col ="0" row="0" hint="Search" v-model="searchPhrase" @textChange="onSearchTextChanged"/>
+        <ListView col="0" row="1" marginRight="-2" for="drink in $store.state.searchResultAlcoholicDrinks" @itemTap="onItemTap">
             <v-template >
                 <GridLayout columns="*,3*" rows="*">
                     <Image col="0" row ="0" height="130" :src="drink.strDrinkThumb" stretch= aspectFit />
@@ -14,7 +15,6 @@
                 </GridLayout>
             </v-template>
         </ListView>
-        <SearchBar col ="0" row="1" hint="Search" v-model="searchPhrase" @textChange="onSearchTextChanged"/>
     </GridLayout>
 </template>
 
@@ -43,20 +43,18 @@
                 });
             },
             onSearchTextChanged(){
-                console.log("searchtext changed", this.searchPhrase )
                this.$store.commit('searchForAlcoholicDrinks', this.searchPhrase)
-
             },
         }
     }
 </script>
 
 <style>
-list-view{
-    font-family: "Chalkboard SE";
-    font-size: 20;
-    text-align: left;
-}
+    list-view{
+        font-family: "Chalkboard SE";
+        font-size: 20;
+        text-align: left;
+    }
     image{
         margin-right: 20;
     }

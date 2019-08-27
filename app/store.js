@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-//import AppSettings from 'tns-core-modules/application-settings'
 const AppSettings = require("application-settings");
 
 
@@ -28,6 +27,7 @@ export default new Vuex.Store({
                   state.favourites.unshift(state.allAlcoholicDrinks[i])
                   state.tappedDrink.isFavourite = true
                   console.log("alcoholic drink added to favourites!")
+                  //Save method runs every time a new drink is added or removed
                   this.commit('save')
                   return
               }else if(state.allNonAlcoholicDrinks[i].idDrink === drinkId){
@@ -62,7 +62,7 @@ export default new Vuex.Store({
               //Loads how many items was saved
               const numberOfItemsSavedInFavouriteList = AppSettings.getNumber('numberOfItems')
               const allDrinks = state.allAlcoholicDrinks.concat(state.allNonAlcoholicDrinks)
-              //Loops thrugh all drinks that has been saved
+              //Loops through all drinks that has been saved
               for (let i = 0; i < numberOfItemsSavedInFavouriteList; i++) {
                   //Fetches the id och the drink that was saved
                   var savedDrinkId = AppSettings.getString('' + i + '')
@@ -77,7 +77,7 @@ export default new Vuex.Store({
       },
 
       save(state){
-          console.log("savemethod runs")
+          //saves all drinks marked as favourites. Runs every time a new drink is added or removed from favourites
           AppSettings.clear()
           for (let i = 0; i < state.favourites.length ; i++) {
               AppSettings.setString(''+i+'', state.favourites[i].idDrink)
@@ -87,6 +87,7 @@ export default new Vuex.Store({
 
       setListWithAlcoholicDrinks(state, allDrinks){
         state.allAlcoholicDrinks = allDrinks
+          //sets the list that users see when used
           this.commit('searchForAlcoholicDrinks', "")
           state.alcoholicDrinksHasLoaded = true
           this.commit('loadFavourites')
@@ -182,7 +183,6 @@ export default new Vuex.Store({
       },
 
       fetchInformationAboutDrink(context, drinkId) {
-
           console.log('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkId)
           return new Promise((resolve, reject) => {
               fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkId)
@@ -196,7 +196,6 @@ export default new Vuex.Store({
                       reject(error)
                   })
           })
-
       },
   }
 
